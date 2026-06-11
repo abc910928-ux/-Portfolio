@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e8eef0"/>
+      <stop offset="1" stop-color="#86a3b0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <g><rect x="332" y="356" width="128" height="244" fill="#2f4858" opacity="0.18"/><rect x="429" y="289" width="61" height="311" fill="#2f4858" opacity="0.18"/><rect x="526" y="222" width="84" height="378" fill="#2f4858" opacity="0.18"/><rect x="623" y="155" width="107" height="445" fill="#2f4858" opacity="0.18"/><rect x="720" y="448" width="130" height="152" fill="#2f4858" opacity="0.18"/><rect x="817" y="381" width="63" height="219" fill="#2f4858" opacity="0.18"/><rect x="194" y="314" width="86" height="286" fill="#2f4858" opacity="0.18"/></g>
+  <rect x="0" y="640" width="1200" height="160" fill="#2f4858" opacity="0.85"/>
+  <text x="60" y="722" font-family="system-ui, sans-serif" font-size="40" fill="#e8eef0" font-weight="600">riverside 3</text>
+  <text x="60" y="768" font-family="system-ui, sans-serif" font-size="22" fill="#e8eef0" opacity="0.7">示意圖 ・ 請替換為實際作品</text>
+</svg>

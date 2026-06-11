@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#efe9df"/>
+      <stop offset="1" stop-color="#b5552f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <g><rect x="226" y="418" width="94" height="182" fill="#33302b" opacity="0.18"/><rect x="323" y="351" width="117" height="249" fill="#33302b" opacity="0.18"/><rect x="420" y="284" width="140" height="316" fill="#33302b" opacity="0.18"/><rect x="517" y="217" width="73" height="383" fill="#33302b" opacity="0.18"/><rect x="614" y="150" width="96" height="450" fill="#33302b" opacity="0.18"/><rect x="711" y="443" width="119" height="157" fill="#33302b" opacity="0.18"/><rect x="808" y="376" width="142" height="224" fill="#33302b" opacity="0.18"/></g>
+  <rect x="0" y="640" width="1200" height="160" fill="#33302b" opacity="0.85"/>
+  <text x="60" y="722" font-family="system-ui, sans-serif" font-size="40" fill="#efe9df" font-weight="600">loft 1</text>
+  <text x="60" y="768" font-family="system-ui, sans-serif" font-size="22" fill="#efe9df" opacity="0.7">示意圖 ・ 請替換為實際作品</text>
+</svg>
