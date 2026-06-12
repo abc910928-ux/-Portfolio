@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/data/projects";
+import { projectTopics } from "@/data/projects";
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
@@ -27,9 +28,11 @@ export function ProjectCard({ project }: { project: Project }) {
           <span className="rounded-full bg-background px-2 py-0.5">
             {project.group}
           </span>
-          <span className="rounded-full bg-background px-2 py-0.5">
-            {project.topic}
-          </span>
+          {projectTopics(project).map((t) => (
+            <span key={t} className="rounded-full bg-background px-2 py-0.5">
+              {t}
+            </span>
+          ))}
           {project.year && <span>{project.year}</span>}
         </div>
         <h3 className="mt-3 text-lg font-medium">{project.title}</h3>

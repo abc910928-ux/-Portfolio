@@ -37,7 +37,7 @@ export type Project = {
   title: string; // 作品名稱
   subtitle: string; // 一句話簡述
   group: Group; // 第一層分類：建模 / 模型
-  topic: string; // 第二層細分主題，例如「室內渲染」「建築模型」
+  topic: string | string[]; // 第二層細分主題；可填多個（作品會同時出現在多個篩選）
   year?: string; // 年份（可留空）
   client?: string; // 業主 / 委託單位（可留空）
   role?: string; // 你的角色（可留空）
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     title: "Cité du Grand Parc 單層剖面模型",
     subtitle: "The renovation of Cité du Grand Parc, France",
     group: "模型",
-    topic: "室內",
+    topic: ["室內", "素模"],
     role: "模型製作",
     cover: "/projects/grand-parc-1.jpg",
     gallery: [
@@ -221,12 +221,19 @@ export function getProject(slug: string): Project | undefined {
 
 export const featuredProjects = projects.filter((p) => p.featured);
 
+// 取得作品的所有細分主題（topic 可能是字串或字串陣列，統一轉成陣列）
+export function projectTopics(p: Project): string[] {
+  return Array.isArray(p.topic) ? p.topic : [p.topic];
+}
+
 // 取得某個 group 的第二層細分主題：
 //   若該 group 有預先定義清單（topicOrder）就用它，否則依現有作品自動產生。
 export function topicsOf(group: Group): string[] {
   const predefined = topicOrder[group];
   if (predefined && predefined.length > 0) return predefined;
-  return Array.from(
-    new Set(projects.filter((p) => p.group === group).map((p) => p.topic)),
-  );
+  const set = new Set<string>();
+  projects
+    .filter((p) => p.group === group)
+    .forEach((p) => projectTopics(p).forEach((t) => set.add(t)));
+  return Array.from(set);
 }

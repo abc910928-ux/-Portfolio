@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { projects, getProject } from "@/data/projects";
+import { projects, getProject, projectTopics } from "@/data/projects";
 import { ModelViewer } from "@/components/model-viewer";
 import { LightboxProvider, LightboxImage } from "@/components/lightbox";
 
@@ -49,9 +49,11 @@ export default async function WorkDetail({
             <span className="rounded-full bg-card px-2.5 py-1">
               {project.group}
             </span>
-            <span className="rounded-full bg-card px-2.5 py-1">
-              {project.topic}
-            </span>
+            {projectTopics(project).map((t) => (
+              <span key={t} className="rounded-full bg-card px-2.5 py-1">
+                {t}
+              </span>
+            ))}
             {project.year && <span>{project.year}</span>}
             {project.client && <span>・{project.client}</span>}
           </div>

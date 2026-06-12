@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Project, Group } from "@/data/projects";
-import { groupOrder, topicsOf } from "@/data/projects";
+import { groupOrder, topicsOf, projectTopics } from "@/data/projects";
 import { ProjectCard } from "@/components/project-card";
 
 type Level1 = "全部" | Group;
@@ -21,7 +21,8 @@ export function WorkGallery({ projects }: { projects: Project[] }) {
   const filtered = useMemo(() => {
     return projects.filter((p) => {
       if (group !== "全部" && p.group !== group) return false;
-      if (group !== "全部" && topic !== "全部" && p.topic !== topic) return false;
+      if (group !== "全部" && topic !== "全部" && !projectTopics(p).includes(topic))
+        return false;
       return true;
     });
   }, [group, topic, projects]);
