@@ -32,19 +32,29 @@ export type ProjectSpec = {
   value: string; // 內容，例如「1:50」
 };
 
+// 某個大分類專屬的封面與圖庫排序（用於同時屬於多分類、想切換呈現的作品）
+export type ProjectView = {
+  cover: string;
+  gallery: string[];
+};
+
 export type Project = {
   slug: string; // 網址用，請用英文與連字號，例如 "riverside-pavilion"
   title: string; // 作品名稱
   subtitle: string; // 一句話簡述
-  group: Group; // 第一層分類：建模 / 模型
+  group: Group | Group[]; // 第一層分類：建模 / 模型；可同時屬於多個（寫成陣列）
   topic: string | string[]; // 第二層細分主題；可填多個（作品會同時出現在多個篩選）
   year?: string; // 年份（可留空）
   client?: string; // 業主 / 委託單位（可留空）
   role?: string; // 你的角色（可留空）
   tools?: string[]; // 使用軟體（可留空）
-  cover: string; // 封面圖路徑
-  gallery: string[]; // 內頁圖片
-  model?: string; // 可互動的 3D 模型路徑（.glb / .gltf），放在 public/models/，可留空
+  cover: string; // 預設封面圖（「全部」與未指定 view 時使用）
+  gallery: string[]; // 預設圖庫（首圖以外的照片）
+  // 各大分類專屬的封面與排序：例如建模時換成建模封面、建模照片優先。
+  // 沒列到的分類就用上面的預設 cover / gallery。
+  views?: Partial<Record<Group, ProjectView>>;
+  model?: string; // 可互動的 3D 模型（.glb / .gltf），放在 public/models/，用 model-viewer
+  model3d?: string; // 可互動的 OBJ 模型（.obj，同資料夾含 .mtl 與貼圖），用 three.js 預覽
   summary?: string; // 文字版專案概述（可留空）
   specs?: ProjectSpec[]; // 小分類清單（模型用途、比例、材料…）；有填就取代「專案概述」文字
   sections: ProjectSection[]; // 圖文案例的段落（可給空陣列）
@@ -105,6 +115,51 @@ export const projects: Project[] = [
         label: "模型材料",
         value: "清水模紙板、3D 列印（家具）、透明 PVC、噴漆",
       },
+      { label: "使用軟體", value: "Rhino" },
+    ],
+    sections: [],
+    featured: true,
+  },
+  {
+    slug: "roman-ruins-shelter",
+    title: "Shelter for Roman Ruins 結構模型",
+    subtitle: "木構造遮蔽所・結構與外觀研究模型",
+    group: ["建模", "模型"], // 同時屬於建模與模型（兩個獨立大分類）
+    topic: ["外觀模型", "材質呈現"],
+    role: "建模・模型製作",
+    // 預設（全部 / 模型）：模型封面、模型照片優先
+    cover: "/projects/roman-1.jpg",
+    gallery: [
+      "/projects/roman-2.jpg",
+      "/projects/roman-3.jpg",
+      "/projects/roman-4.jpg",
+      "/projects/roman-5.jpg",
+      "/projects/roman-6.jpg",
+      "/projects/roman-7.jpg",
+      "/projects/roman-8.jpg",
+      "/projects/roman-9.jpg",
+    ],
+    // 建模情境：建模封面（8），建模照片（8、9）優先
+    views: {
+      建模: {
+        cover: "/projects/roman-8.jpg",
+        gallery: [
+          "/projects/roman-9.jpg",
+          "/projects/roman-1.jpg",
+          "/projects/roman-2.jpg",
+          "/projects/roman-3.jpg",
+          "/projects/roman-4.jpg",
+          "/projects/roman-5.jpg",
+          "/projects/roman-6.jpg",
+          "/projects/roman-7.jpg",
+        ],
+      },
+    },
+    model3d: "/models/roman-ruins/3Dmodel.obj",
+    specs: [
+      { label: "模型用途", value: "學生 case study" },
+      { label: "模型比例", value: "1:20" },
+      { label: "模型材料", value: "木條、水泥、石頭、紙板" },
       { label: "使用軟體", value: "Rhino" },
     ],
     sections: [],
@@ -261,6 +316,20 @@ export function projectTopics(p: Project): string[] {
   return Array.isArray(p.topic) ? p.topic : [p.topic];
 }
 
+// 取得作品所屬的所有大分類（group 可能是字串或字串陣列，統一轉成陣列）
+export function projectGroups(p: Project): Group[] {
+  return Array.isArray(p.group) ? p.group : [p.group];
+}
+
+// 取得某情境下要用的封面與圖庫：
+//   指定大分類且該作品有對應 views 設定時用它，否則用預設 cover / gallery。
+export function viewFor(p: Project, group?: Group | "全部"): ProjectView {
+  if (group && group !== "全部" && p.views?.[group]) {
+    return p.views[group] as ProjectView;
+  }
+  return { cover: p.cover, gallery: p.gallery };
+}
+
 // 取得某個 group 的第二層細分主題：
 //   若該 group 有預先定義清單（topicOrder）就用它，否則依現有作品自動產生。
 export function topicsOf(group: Group): string[] {
@@ -268,7 +337,7 @@ export function topicsOf(group: Group): string[] {
   if (predefined && predefined.length > 0) return predefined;
   const set = new Set<string>();
   projects
-    .filter((p) => p.group === group)
+    .filter((p) => projectGroups(p).includes(group))
     .forEach((p) => projectTopics(p).forEach((t) => set.add(t)));
   return Array.from(set);
 }
