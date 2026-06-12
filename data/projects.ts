@@ -167,6 +167,44 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "sheng-kung-hospital",
+    title: "高雄聖功醫院",
+    subtitle: "醫院與教堂・建築展示模型",
+    group: ["建模", "模型"], // 同時屬於建模與模型
+    topic: ["外觀模型", "材質呈現"],
+    role: "建模・模型製作",
+    // 預設（全部 / 模型）：模型封面、模型照片優先
+    cover: "/projects/sheng-kung-1.jpg",
+    gallery: [
+      "/projects/sheng-kung-2.jpg",
+      "/projects/sheng-kung-3.jpg",
+      "/projects/sheng-kung-4.jpg",
+      "/projects/sheng-kung-5.jpg",
+    ],
+    // 建模情境：建模封面（5＝數位渲染），建模圖優先
+    views: {
+      建模: {
+        cover: "/projects/sheng-kung-5.jpg",
+        gallery: [
+          "/projects/sheng-kung-1.jpg",
+          "/projects/sheng-kung-2.jpg",
+          "/projects/sheng-kung-3.jpg",
+          "/projects/sheng-kung-4.jpg",
+        ],
+      },
+    },
+    // 188MB OBJ 已轉為 Draco 壓縮 GLB（7MB），用 model-viewer 預覽
+    model: "/models/sheng-kung.glb",
+    specs: [
+      { label: "模型用途", value: "醫院展示模型" },
+      { label: "模型比例", value: "1:100" },
+      { label: "模型材料", value: "牛奶板、3D 列印、壓克力、噴漆" },
+      { label: "使用軟體", value: "Rhino" },
+    ],
+    sections: [],
+    featured: true,
+  },
+  {
     slug: "riverside-pavilion",
     title: "河岸藝文展演廳",
     subtitle: "以連續曲面屋頂呼應水岸地景的公共建築提案",
