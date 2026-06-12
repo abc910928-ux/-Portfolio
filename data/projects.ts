@@ -209,7 +209,7 @@ export const projects: Project[] = [
     title: "湖芯AIT結構模型",
     subtitle: "銷售中心・結構展示模型",
     group: "模型",
-    topic: ["外觀模型", "材質呈現"],
+    topic: ["外觀模型", "素模"],
     role: "模型製作",
     cover: "/projects/husin-1.jpg",
     gallery: [
