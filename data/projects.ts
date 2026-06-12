@@ -205,6 +205,28 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "husin-ait-structure",
+    title: "湖芯AIT結構模型",
+    subtitle: "銷售中心・結構展示模型",
+    group: "模型",
+    topic: ["外觀模型", "材質呈現"],
+    role: "模型製作",
+    cover: "/projects/husin-1.jpg",
+    gallery: [
+      "/projects/husin-2.jpg",
+      "/projects/husin-3.jpg",
+      "/projects/husin-4.jpg",
+    ],
+    specs: [
+      { label: "模型用途", value: "銷售中心展示模型" },
+      { label: "模型比例", value: "1:80" },
+      { label: "模型材料", value: "牛奶板、壓克力" },
+      { label: "使用軟體", value: "Rhino" },
+    ],
+    sections: [],
+    featured: true,
+  },
+  {
     slug: "riverside-pavilion",
     title: "河岸藝文展演廳",
     subtitle: "以連續曲面屋頂呼應水岸地景的公共建築提案",
