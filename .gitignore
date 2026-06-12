@@ -28,6 +28,9 @@
 .devserver.log
 /.claude/
 
+# 原始照片素材資料夾（已複製進 public/projects，不需重複上傳）
+/Portfolio-photo/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

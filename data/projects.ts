@@ -27,25 +27,54 @@ export type ProjectSection = {
   body: string;
 };
 
+export type ProjectSpec = {
+  label: string; // 小分類名稱，例如「模型比例」
+  value: string; // 內容，例如「1:50」
+};
+
 export type Project = {
   slug: string; // 網址用，請用英文與連字號，例如 "riverside-pavilion"
   title: string; // 作品名稱
   subtitle: string; // 一句話簡述
   group: Group; // 第一層分類：建模 / 模型
   topic: string; // 第二層細分主題，例如「室內渲染」「建築模型」
-  year: string;
+  year?: string; // 年份（可留空）
   client?: string; // 業主 / 委託單位（可留空）
-  role: string; // 你的角色
-  tools: string[]; // 使用軟體
+  role?: string; // 你的角色（可留空）
+  tools?: string[]; // 使用軟體（可留空）
   cover: string; // 封面圖路徑
   gallery: string[]; // 內頁圖片
   model?: string; // 可互動的 3D 模型路徑（.glb / .gltf），放在 public/models/，可留空
-  summary: string; // 列表頁與詳情頁開頭的概述
-  sections: ProjectSection[]; // 圖文案例的段落
+  summary?: string; // 文字版專案概述（可留空）
+  specs?: ProjectSpec[]; // 小分類清單（模型用途、比例、材料…）；有填就取代「專案概述」文字
+  sections: ProjectSection[]; // 圖文案例的段落（可給空陣列）
   featured?: boolean; // 是否在首頁精選
 };
 
 export const projects: Project[] = [
+  {
+    slug: "grand-parc-renovation",
+    title: "Cité du Grand Parc 單層剖面模型",
+    subtitle: "The renovation of Cité du Grand Parc, France",
+    group: "模型",
+    topic: "室內",
+    role: "模型製作",
+    cover: "/projects/grand-parc-1.jpg",
+    gallery: [
+      "/projects/grand-parc-2.jpg",
+      "/projects/grand-parc-3.jpg",
+      "/projects/grand-parc-4.jpg",
+    ],
+    // 「小分類」會取代詳情頁的「專案概述」文字
+    specs: [
+      { label: "模型用途", value: "展覽使用" },
+      { label: "模型比例", value: "1:50" },
+      { label: "模型材料", value: "牛奶板、3D 列印（家具）、壓克力" },
+      { label: "使用軟體", value: "Rhino" },
+    ],
+    sections: [], // 不放圖文段落，照片以圖庫形式呈現
+    featured: true,
+  },
   {
     slug: "riverside-pavilion",
     title: "河岸藝文展演廳",

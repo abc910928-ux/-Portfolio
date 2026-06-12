@@ -30,7 +30,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <span className="rounded-full bg-background px-2 py-0.5">
             {project.topic}
           </span>
-          <span>{project.year}</span>
+          {project.year && <span>{project.year}</span>}
         </div>
         <h3 className="mt-3 text-lg font-medium">{project.title}</h3>
         <p className="mt-1 text-sm leading-relaxed text-muted">

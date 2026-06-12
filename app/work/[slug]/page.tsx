@@ -20,7 +20,7 @@ export async function generateMetadata({
   if (!project) return { title: "找不到作品" };
   return {
     title: `${project.title} ｜ 作品集`,
-    description: project.summary,
+    description: project.summary || project.subtitle,
   };
 }
 
@@ -51,7 +51,7 @@ export default async function WorkDetail({
             <span className="rounded-full bg-card px-2.5 py-1">
               {project.topic}
             </span>
-            <span>{project.year}</span>
+            {project.year && <span>{project.year}</span>}
             {project.client && <span>・{project.client}</span>}
           </div>
           <h1 className="mt-4 text-3xl font-medium sm:text-4xl">
@@ -77,35 +77,57 @@ export default async function WorkDetail({
         </div>
       </div>
 
-      {/* 概述 + 規格 */}
+      {/* 概述：有填 specs 就顯示小分類清單，否則顯示文字概述 + 規格 */}
       <section className="mx-auto max-w-4xl px-6 py-12">
-        <div className="grid gap-10 sm:grid-cols-3">
-          <div className="sm:col-span-2">
-            <h2 className="text-sm font-medium uppercase tracking-wider text-accent">
-              專案概述
-            </h2>
-            <p className="mt-3 text-base leading-relaxed">{project.summary}</p>
-          </div>
-          <dl className="space-y-4 text-sm">
-            <div>
-              <dt className="text-muted">角色</dt>
-              <dd className="mt-1">{project.role}</dd>
-            </div>
-            <div>
-              <dt className="text-muted">使用軟體</dt>
-              <dd className="mt-1 flex flex-wrap gap-1.5">
-                {project.tools.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded border border-line bg-card px-2 py-0.5"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </dd>
-            </div>
+        {project.specs && project.specs.length > 0 ? (
+          <dl className="grid gap-x-10 gap-y-5 sm:grid-cols-2">
+            {project.specs.map((s) => (
+              <div
+                key={s.label}
+                className="border-t border-line pt-3"
+              >
+                <dt className="text-sm text-muted">{s.label}</dt>
+                <dd className="mt-1 text-base">{s.value}</dd>
+              </div>
+            ))}
           </dl>
-        </div>
+        ) : (
+          <div className="grid gap-10 sm:grid-cols-3">
+            {project.summary && (
+              <div className="sm:col-span-2">
+                <h2 className="text-sm font-medium uppercase tracking-wider text-accent">
+                  專案概述
+                </h2>
+                <p className="mt-3 text-base leading-relaxed">
+                  {project.summary}
+                </p>
+              </div>
+            )}
+            <dl className="space-y-4 text-sm">
+              {project.role && (
+                <div>
+                  <dt className="text-muted">角色</dt>
+                  <dd className="mt-1">{project.role}</dd>
+                </div>
+              )}
+              {project.tools && project.tools.length > 0 && (
+                <div>
+                  <dt className="text-muted">使用軟體</dt>
+                  <dd className="mt-1 flex flex-wrap gap-1.5">
+                    {project.tools.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded border border-line bg-card px-2 py-0.5"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </dd>
+                </div>
+              )}
+            </dl>
+          </div>
+        )}
       </section>
 
       {/* 互動 3D 模型 */}
