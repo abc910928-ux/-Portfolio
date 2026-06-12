@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { projects, getProject } from "@/data/projects";
 import { ModelViewer } from "@/components/model-viewer";
+import { LightboxProvider, LightboxImage } from "@/components/lightbox";
 
 // 靜態匯出必須：先告訴 Next 有哪些網址要產生
 export function generateStaticParams() {
@@ -143,48 +144,55 @@ export default async function WorkDetail({
         </section>
       )}
 
-      {/* 圖文段落 */}
-      <section className="mx-auto max-w-4xl space-y-16 px-6 pb-16">
-        {project.sections.map((sec, i) => (
-          <div key={i} className="grid gap-6">
-            <div className="max-w-2xl">
-              <h3 className="text-xl font-medium">{sec.heading}</h3>
-              <p className="mt-3 leading-relaxed text-muted">{sec.body}</p>
-            </div>
-            {project.gallery[i] && (
-              <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-line">
-                <Image
-                  src={project.gallery[i]}
-                  alt={`${project.title} - ${sec.heading}`}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 896px"
-                  className="object-cover"
-                />
-              </div>
-            )}
-          </div>
-        ))}
-
-        {/* 其餘未配對到段落的圖片 */}
-        {project.gallery.length > project.sections.length && (
-          <div className="grid gap-6 sm:grid-cols-2">
-            {project.gallery.slice(project.sections.length).map((img, i) => (
-              <div
-                key={i}
-                className="relative aspect-[4/3] overflow-hidden rounded-lg border border-line"
-              >
-                <Image
-                  src={img}
-                  alt={`${project.title} 圖 ${i + 1}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                />
+      {/* 圖文段落 + 圖片（點圖可放大、左右切換） */}
+      {project.gallery.length > 0 && (
+        <LightboxProvider images={project.gallery} alt={project.title}>
+          <section className="mx-auto max-w-4xl space-y-16 px-6 pb-16">
+            {project.sections.map((sec, i) => (
+              <div key={i} className="grid gap-6">
+                <div className="max-w-2xl">
+                  <h3 className="text-xl font-medium">{sec.heading}</h3>
+                  <p className="mt-3 leading-relaxed text-muted">{sec.body}</p>
+                </div>
+                {project.gallery[i] && (
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-line">
+                    <LightboxImage
+                      index={i}
+                      src={project.gallery[i]}
+                      alt={`${project.title} - ${sec.heading}`}
+                      sizes="(max-width: 1024px) 100vw, 896px"
+                    />
+                  </div>
+                )}
               </div>
             ))}
-          </div>
-        )}
-      </section>
+
+            {/* 其餘未配對到段落的圖片 */}
+            {project.gallery.length > project.sections.length && (
+              <div className="grid gap-6 sm:grid-cols-2">
+                {project.gallery
+                  .slice(project.sections.length)
+                  .map((img, i) => {
+                    const galleryIndex = project.sections.length + i;
+                    return (
+                      <div
+                        key={galleryIndex}
+                        className="relative aspect-[4/3] overflow-hidden rounded-lg border border-line"
+                      >
+                        <LightboxImage
+                          index={galleryIndex}
+                          src={img}
+                          alt={`${project.title} 圖 ${galleryIndex + 1}`}
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </div>
+                    );
+                  })}
+              </div>
+            )}
+          </section>
+        </LightboxProvider>
+      )}
 
       {/* 下一個作品導引 */}
       <nav className="border-t border-line">
