@@ -64,6 +64,7 @@ export const projects: Project[] = [
       "/projects/grand-parc-2.jpg",
       "/projects/grand-parc-3.jpg",
       "/projects/grand-parc-4.jpg",
+      "/projects/grand-parc-5.jpg",
     ],
     // 「小分類」會取代詳情頁的「專案概述」文字
     specs: [
