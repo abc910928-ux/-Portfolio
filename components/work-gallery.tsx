@@ -2,23 +2,21 @@
 
 import { useMemo, useState } from "react";
 import type { Project, Group } from "@/data/projects";
+import { groupOrder, topicsOf } from "@/data/projects";
 import { ProjectCard } from "@/components/project-card";
 
 type Level1 = "全部" | Group;
-const LEVEL1: Level1[] = ["全部", "建模", "模型"];
+const LEVEL1: Level1[] = ["全部", ...groupOrder];
 
 export function WorkGallery({ projects }: { projects: Project[] }) {
   const [group, setGroup] = useState<Level1>("全部");
   const [topic, setTopic] = useState<string>("全部");
 
-  // 第二層選項：依目前選的 group，從作品資料自動產生細分主題
+  // 第二層選項：模型用預定義清單、建模依資料自動產生（由 topicsOf 處理）
   const topics = useMemo(() => {
     if (group === "全部") return [];
-    const list = Array.from(
-      new Set(projects.filter((p) => p.group === group).map((p) => p.topic)),
-    );
-    return ["全部", ...list];
-  }, [group, projects]);
+    return ["全部", ...topicsOf(group)];
+  }, [group]);
 
   const filtered = useMemo(() => {
     return projects.filter((p) => {

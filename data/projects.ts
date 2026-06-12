@@ -10,7 +10,17 @@
 //                 相同 topic 的作品會被歸在同一個篩選按鈕底下。
 // ─────────────────────────────────────────────────────────────
 
-export type Group = "建模" | "模型";
+export type Group = "模型" | "建模";
+
+// 第一層分類的顯示順序
+export const groupOrder: Group[] = ["模型", "建模"];
+
+// 第二層細分主題的「預先定義清單」：
+//   有列在這裡的 group，會固定顯示這些主題按鈕（即使某主題還沒有作品，方便日後分類）；
+//   沒列在這裡的 group（例如「建模」），則依現有作品自動產生主題。
+export const topicOrder: Partial<Record<Group, string[]>> = {
+  模型: ["素模", "上色", "室內", "外觀模型", "含周遭環境"],
+};
 
 export type ProjectSection = {
   heading: string;
@@ -41,7 +51,7 @@ export const projects: Project[] = [
     title: "河岸藝文展演廳",
     subtitle: "以連續曲面屋頂呼應水岸地景的公共建築提案",
     group: "模型",
-    topic: "建築模型",
+    topic: "含周遭環境",
     year: "2025",
     client: "概念競圖",
     role: "建築模型製作・空間規劃",
@@ -122,7 +132,7 @@ export const projects: Project[] = [
     title: "立面細部構造模型",
     subtitle: "從整體到節點的構造拆解",
     group: "模型",
-    topic: "細部模型",
+    topic: "素模",
     year: "2024",
     role: "細部建模・構造研究",
     tools: ["Rhino", "AutoCAD"],
@@ -182,8 +192,11 @@ export function getProject(slug: string): Project | undefined {
 
 export const featuredProjects = projects.filter((p) => p.featured);
 
-// 取得某個 group 底下所有出現過的細分主題（依資料自動產生）
+// 取得某個 group 的第二層細分主題：
+//   若該 group 有預先定義清單（topicOrder）就用它，否則依現有作品自動產生。
 export function topicsOf(group: Group): string[] {
+  const predefined = topicOrder[group];
+  if (predefined && predefined.length > 0) return predefined;
   return Array.from(
     new Set(projects.filter((p) => p.group === group).map((p) => p.topic)),
   );
