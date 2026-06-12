@@ -10,26 +10,37 @@ const LEVEL1: Level1[] = ["全部", ...groupOrder];
 
 export function WorkGallery({ projects }: { projects: Project[] }) {
   const [group, setGroup] = useState<Level1>("全部");
-  const [topic, setTopic] = useState<string>("全部");
+  // 第二層可複選；空陣列代表「不限主題」＝顯示該分類全部
+  const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
 
   // 第二層選項：模型用預定義清單、建模依資料自動產生（由 topicsOf 處理）
   const topics = useMemo(() => {
     if (group === "全部") return [];
-    return ["全部", ...topicsOf(group)];
+    return topicsOf(group);
   }, [group]);
 
   const filtered = useMemo(() => {
     return projects.filter((p) => {
       if (group !== "全部" && p.group !== group) return false;
-      if (group !== "全部" && topic !== "全部" && !projectTopics(p).includes(topic))
+      // 沒選主題 = 全部；有選 = 需同時符合「全部」所選主題（AND 邏輯）
+      if (
+        selectedTopics.length > 0 &&
+        !selectedTopics.every((t) => projectTopics(p).includes(t))
+      )
         return false;
       return true;
     });
-  }, [group, topic, projects]);
+  }, [group, selectedTopics, projects]);
 
   function selectGroup(g: Level1) {
     setGroup(g);
-    setTopic("全部"); // 切換第一層時，第二層重設為全部
+    setSelectedTopics([]); // 切換第一層時，清空第二層複選
+  }
+
+  function toggleTopic(t: string) {
+    setSelectedTopics((prev) =>
+      prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t],
+    );
   }
 
   return (
@@ -55,16 +66,18 @@ export function WorkGallery({ projects }: { projects: Project[] }) {
         })}
       </div>
 
-      {/* 第二層（選了建模 / 模型才出現） */}
+      {/* 第二層（選了建模 / 模型才出現，可複選） */}
       {topics.length > 0 && (
         <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-line pt-3">
-          <span className="mr-1 text-xs text-muted">細分主題</span>
+          <span className="mr-1 text-xs text-muted">
+            細分主題（可複選，需全部符合）
+          </span>
           {topics.map((t) => {
-            const active = topic === t;
+            const active = selectedTopics.includes(t);
             return (
               <button
                 key={t}
-                onClick={() => setTopic(t)}
+                onClick={() => toggleTopic(t)}
                 className={
                   "rounded-full px-3.5 py-1.5 text-sm transition-colors " +
                   (active
@@ -76,6 +89,20 @@ export function WorkGallery({ projects }: { projects: Project[] }) {
               </button>
             );
           })}
+
+          {/* 清除重選 */}
+          <button
+            onClick={() => setSelectedTopics([])}
+            disabled={selectedTopics.length === 0}
+            className={
+              "ml-1 rounded-full px-3.5 py-1.5 text-sm transition-colors " +
+              (selectedTopics.length === 0
+                ? "cursor-not-allowed text-muted/40"
+                : "text-muted underline-offset-2 hover:text-foreground hover:underline")
+            }
+          >
+            ✕ 清除重選
+          </button>
         </div>
       )}
 
