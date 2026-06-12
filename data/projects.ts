@@ -20,6 +20,7 @@ export const groupOrder: Group[] = ["模型", "建模"];
 //   沒列在這裡的 group（例如「建模」），則依現有作品自動產生主題。
 export const topicOrder: Partial<Record<Group, string[]>> = {
   模型: ["素模", "材質呈現", "室內", "外觀模型", "含周遭環境"],
+  建模: [], // 空清單＝建模先不做細分主題（選建模時不顯示第二層）
 };
 
 export type ProjectSection = {
@@ -334,7 +335,8 @@ export function viewFor(p: Project, group?: Group | "全部"): ProjectView {
 //   若該 group 有預先定義清單（topicOrder）就用它，否則依現有作品自動產生。
 export function topicsOf(group: Group): string[] {
   const predefined = topicOrder[group];
-  if (predefined && predefined.length > 0) return predefined;
+  // 有設定 topicOrder 就以它為準（空陣列＝刻意不做細分主題）；沒設定才自動產生
+  if (predefined) return predefined;
   const set = new Set<string>();
   projects
     .filter((p) => projectGroups(p).includes(group))
