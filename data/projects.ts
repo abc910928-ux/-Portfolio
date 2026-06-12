@@ -75,7 +75,7 @@ export const projects: Project[] = [
       },
       { label: "模型比例", value: "1:50" },
       { label: "模型材料", value: "牛奶板、3D 列印（家具）、壓克力" },
-      { label: "使用軟體", value: "Rhino" },
+      { label: "使用軟體", value: "Rhino、AutoCAD" },
     ],
     sections: [], // 不放圖文段落，照片以圖庫形式呈現
     featured: true,
