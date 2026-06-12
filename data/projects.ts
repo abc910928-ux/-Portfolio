@@ -101,7 +101,10 @@ export const projects: Project[] = [
     specs: [
       { label: "模型用途", value: "學生 case study" },
       { label: "模型比例", value: "1:50" },
-      { label: "模型材料", value: "清水模板、3D 列印（家具）、PVC 噴漆" },
+      {
+        label: "模型材料",
+        value: "清水模紙板、3D 列印（家具）、透明 PVC、噴漆",
+      },
       { label: "使用軟體", value: "Rhino" },
     ],
     sections: [],
