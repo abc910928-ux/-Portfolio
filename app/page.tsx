@@ -1,5 +1,5 @@
 import { projects } from "@/data/projects";
-import { ProjectCard } from "@/components/project-card";
+import { WorkGallery } from "@/components/work-gallery";
 
 export default function Home() {
   return (
@@ -23,17 +23,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 作品列表 */}
+      {/* 作品列表（含兩層篩選） */}
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <div className="mb-8 flex items-end justify-between">
-          <h2 className="text-2xl font-medium">作品案例</h2>
-          <span className="text-sm text-muted">共 {projects.length} 件</span>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
-        </div>
+        <h2 className="mb-6 text-2xl font-medium">作品案例</h2>
+        <WorkGallery projects={projects} />
       </section>
     </>
   );

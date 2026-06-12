@@ -3,7 +3,14 @@
 //
 // 圖片放在 public/projects/ 資料夾，cover 與 gallery 用「/projects/檔名」即可，
 // basePath 會由 next/image 自動處理，不用自己加 /-Portfolio。
+//
+// 篩選分兩層：
+//   第一層 group：「建模」（數位 3D）或「模型」（實體模型）
+//   第二層 topic：細分主題（自由命名，例如「室內渲染」「建築模型」），
+//                 相同 topic 的作品會被歸在同一個篩選按鈕底下。
 // ─────────────────────────────────────────────────────────────
+
+export type Group = "建模" | "模型";
 
 export type ProjectSection = {
   heading: string;
@@ -14,7 +21,8 @@ export type Project = {
   slug: string; // 網址用，請用英文與連字號，例如 "riverside-pavilion"
   title: string; // 作品名稱
   subtitle: string; // 一句話簡述
-  category: "建築模型" | "3D 建模" | "3D 動畫" | "渲染" | "其他";
+  group: Group; // 第一層分類：建模 / 模型
+  topic: string; // 第二層細分主題，例如「室內渲染」「建築模型」
   year: string;
   client?: string; // 業主 / 委託單位（可留空）
   role: string; // 你的角色
@@ -32,7 +40,8 @@ export const projects: Project[] = [
     slug: "riverside-pavilion",
     title: "河岸藝文展演廳",
     subtitle: "以連續曲面屋頂呼應水岸地景的公共建築提案",
-    category: "建築模型",
+    group: "模型",
+    topic: "建築模型",
     year: "2025",
     client: "概念競圖",
     role: "建築模型製作・空間規劃",
@@ -62,7 +71,8 @@ export const projects: Project[] = [
     slug: "urban-housing-mass",
     title: "都市集合住宅量體研究",
     subtitle: "退縮、錯層與綠陽台的密度實驗",
-    category: "3D 建模",
+    group: "建模",
+    topic: "量體研究",
     year: "2025",
     role: "3D 建模・量體研究",
     tools: ["Rhino", "Grasshopper", "Blender"],
@@ -86,7 +96,8 @@ export const projects: Project[] = [
     slug: "interior-render-loft",
     title: "挑高 Loft 室內渲染",
     subtitle: "材質、光線與氛圍的寫實呈現",
-    category: "渲染",
+    group: "建模",
+    topic: "室內渲染",
     year: "2025",
     role: "材質設定・燈光・渲染",
     tools: ["3ds Max", "Corona Renderer", "Photoshop"],
@@ -110,7 +121,8 @@ export const projects: Project[] = [
     slug: "facade-detail-study",
     title: "立面細部構造模型",
     subtitle: "從整體到節點的構造拆解",
-    category: "建築模型",
+    group: "模型",
+    topic: "細部模型",
     year: "2024",
     role: "細部建模・構造研究",
     tools: ["Rhino", "AutoCAD"],
@@ -128,7 +140,8 @@ export const projects: Project[] = [
     slug: "product-cgi-chair",
     title: "家具產品 CGI",
     subtitle: "單椅的產品級建模與打光",
-    category: "渲染",
+    group: "建模",
+    topic: "產品渲染",
     year: "2024",
     role: "產品建模・渲染",
     tools: ["Blender", "Cycles"],
@@ -146,7 +159,8 @@ export const projects: Project[] = [
     slug: "site-context-diorama",
     title: "基地環境地景模型",
     subtitle: "把建築放回它所屬的城市紋理",
-    category: "3D 建模",
+    group: "建模",
+    topic: "地景建模",
     year: "2024",
     role: "地景建模・環境分析",
     tools: ["SketchUp", "QGIS", "Blender"],
@@ -167,3 +181,10 @@ export function getProject(slug: string): Project | undefined {
 }
 
 export const featuredProjects = projects.filter((p) => p.featured);
+
+// 取得某個 group 底下所有出現過的細分主題（依資料自動產生）
+export function topicsOf(group: Group): string[] {
+  return Array.from(
+    new Set(projects.filter((p) => p.group === group).map((p) => p.topic)),
+  );
+}

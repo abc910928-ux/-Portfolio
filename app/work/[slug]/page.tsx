@@ -46,7 +46,10 @@ export default async function WorkDetail({
           </Link>
           <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-muted">
             <span className="rounded-full bg-card px-2.5 py-1">
-              {project.category}
+              {project.group}
+            </span>
+            <span className="rounded-full bg-card px-2.5 py-1">
+              {project.topic}
             </span>
             <span>{project.year}</span>
             {project.client && <span>・{project.client}</span>}

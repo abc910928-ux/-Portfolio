@@ -25,7 +25,10 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="p-5">
         <div className="flex items-center gap-2 text-xs text-muted">
           <span className="rounded-full bg-background px-2 py-0.5">
-            {project.category}
+            {project.group}
+          </span>
+          <span className="rounded-full bg-background px-2 py-0.5">
+            {project.topic}
           </span>
           <span>{project.year}</span>
         </div>
