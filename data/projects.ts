@@ -19,7 +19,7 @@ export const groupOrder: Group[] = ["模型", "建模"];
 //   有列在這裡的 group，會固定顯示這些主題按鈕（即使某主題還沒有作品，方便日後分類）；
 //   沒列在這裡的 group（例如「建模」），則依現有作品自動產生主題。
 export const topicOrder: Partial<Record<Group, string[]>> = {
-  模型: ["素模", "上色", "室內", "外觀模型", "含周遭環境"],
+  模型: ["素模", "材質呈現", "室內", "外觀模型", "含周遭環境"],
 };
 
 export type ProjectSection = {
