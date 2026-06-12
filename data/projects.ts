@@ -68,7 +68,11 @@ export const projects: Project[] = [
     ],
     // 「小分類」會取代詳情頁的「專案概述」文字
     specs: [
-      { label: "模型用途", value: "展覽使用" },
+      {
+        label: "模型用途",
+        value:
+          "台灣博物館鐵道部特展「當我們同宅一起：公宅設計與理想現代生活」展覽模型",
+      },
       { label: "模型比例", value: "1:50" },
       { label: "模型材料", value: "牛奶板、3D 列印（家具）、壓克力" },
       { label: "使用軟體", value: "Rhino" },
