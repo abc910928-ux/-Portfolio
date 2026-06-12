@@ -5,6 +5,14 @@
 正式網址（推上 GitHub 並啟用 Pages 後）：
 **https://abc910928-ux.github.io/-Portfolio/**
 
+### 網站功能
+
+- 首頁作品牆，**兩層分類篩選**（模型／建模 → 細分主題，第二層可複選、AND 邏輯、可清除重選）
+- 作品詳情頁：封面、**小分類規格**、圖文段落
+- 圖庫照片**點擊放大**，左右箭頭／鍵盤切換、Esc 關閉
+- 作品可掛**可互動 3D 模型**（網頁中直接旋轉、縮放）
+- 一個作品可同時歸入**多個細分主題**
+
 ---
 
 ## 懶人包：兩個一鍵腳本（雙擊即可）
@@ -39,17 +47,42 @@ npm run dev      # 啟動本機預覽
 
 1. 把作品圖片放進 `public/projects/` 資料夾。
 2. 在 `data/projects.ts` 的 `projects` 陣列裡，複製一段現有的物件、改成你的內容：
-   - `slug`：網址用的英文名稱（例如 `my-new-project`），不可重複。
-   - `title` / `subtitle`：作品名稱與一句話簡述。
-   - `category`：建築模型 / 3D 建模 / 3D 動畫 / 渲染 / 其他。
-   - `cover`：封面圖，例如 `/projects/my-new-project-cover.jpg`。
-   - `gallery`：內頁圖片清單。
-   - `sections`：圖文段落（標題＋說明），會依序與 gallery 圖片配對呈現。
-   - `featured: true`：是否在首頁強調（目前首頁顯示全部作品）。
+
+   | 欄位 | 必填 | 說明 |
+   | --- | :--: | --- |
+   | `slug` | ✓ | 網址用的英文名稱（例如 `my-project`），不可重複 |
+   | `title` / `subtitle` | ✓ | 作品名稱與一句話簡述 |
+   | `group` | ✓ | 第一層分類：`"模型"` 或 `"建模"` |
+   | `topic` | ✓ | 第二層細分主題。單一寫字串 `"室內"`；要同時歸到多個分類寫陣列 `["室內", "素模"]` |
+   | `cover` | ✓ | 封面圖，例如 `/projects/my-project-1.jpg` |
+   | `gallery` | ✓ | 內頁圖片清單（首圖以外的照片，點擊可放大、左右切換） |
+   | `specs` | | 小分類清單（模型用途／比例／材料／軟體…），**有填就會取代「專案概述」文字** |
+   | `summary` | | 文字版專案概述（沒填 specs 時才顯示） |
+   | `sections` | ✓ | 圖文段落（標題＋說明）；不需要就給空陣列 `[]` |
+   | `model` | | 可互動 3D 模型路徑（見下方） |
+   | `year` / `client` / `role` / `tools` | | 年份／業主／角色／使用軟體，皆可留空 |
+   | `featured` | | `true` 代表首頁精選 |
 
 > 圖片路徑只要寫 `/projects/檔名`，網站會自動處理 GitHub Pages 的子路徑，不用自己加 `-Portfolio`。
 
-**示意圖**：`public/projects/` 內目前是自動產生的示意圖，請用實際作品（.jpg / .png / .webp）覆蓋同名檔案，或改 `data/projects.ts` 內的路徑。重新產生示意圖可執行 `node scripts/gen-placeholders.mjs`。
+**篩選分類怎麼運作**
+
+- 第一層（全部／模型／建模）順序由 `groupOrder` 決定。
+- 模型的第二層主題是**預先定義**在 `topicOrder`（素模／上色／室內／外觀模型／含周遭環境），即使某主題還沒作品也會顯示按鈕；建模則依現有作品自動產生。
+- 第二層**可複選**，選多個時作品需「同時符合全部所選主題」才顯示，標籤列末端有「清除重選」鈕。
+
+**小分類（specs）範例**
+
+```ts
+specs: [
+  { label: "模型用途", value: "展覽使用" },
+  { label: "模型比例", value: "1:50" },
+  { label: "模型材料", value: "牛奶板、3D 列印（家具）、壓克力" },
+  { label: "使用軟體", value: "Rhino" },
+],
+```
+
+**示意圖**：`public/projects/` 內預設為自動產生的示意圖，請用實際作品（.jpg / .png / .webp）覆蓋，或改 `data/projects.ts` 內的路徑。重新產生示意圖可執行 `node scripts/gen-placeholders.mjs`。
 
 **聯絡資訊**：請編輯 `components/site-footer.tsx`，把 email 與社群連結換成你的。
 
