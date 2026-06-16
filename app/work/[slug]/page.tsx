@@ -94,9 +94,7 @@ export default async function WorkDetail({
   );
 
   // 3D 模型區（OBJ 優先，其次 GLB）—— 放在資訊後、照片前
-  const label3d = projectGroups(project).includes("建模")
-    ? "互動 3D 模型（建模）"
-    : "互動 3D 模型";
+  const label3d = "3D 模型";
   const media3d = project.model3d ? (
     <section className="mx-auto max-w-4xl px-6 pb-4">
       <h2 className="mb-3 text-sm font-medium uppercase tracking-wider text-accent">

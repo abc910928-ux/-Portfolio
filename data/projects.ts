@@ -156,7 +156,7 @@ export const projects: Project[] = [
         ],
       },
     },
-    model3d: "/models/roman-ruins/3Dmodel.obj",
+    model: "/models/roman-ruins.glb",
     specs: [
       { label: "模型用途", value: "學生 case study" },
       { label: "模型比例", value: "1:20" },
