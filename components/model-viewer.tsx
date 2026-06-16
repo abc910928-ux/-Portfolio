@@ -51,7 +51,6 @@ export function ModelViewer({ src, alt, height = 480 }: Props) {
           interaction-prompt="none"
           shadow-intensity="1"
           exposure="1.1"
-          camera-orbit="35deg 70deg auto"
           style={{ width: "100%", height: "100%", backgroundColor: "transparent" }}
         />
       )}
