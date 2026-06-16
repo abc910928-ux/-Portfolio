@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { LightboxProvider, LightboxImage } from "@/components/lightbox";
+import { asset } from "@/data/projects";
 import type { ProjectSection, ProjectView } from "@/data/projects";
 
 type Props = {
@@ -38,7 +39,7 @@ export function ProjectMedia({
       <div className="mx-auto max-w-5xl px-6 pt-10">
         <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-line">
           <Image
-            src={chosen.cover}
+            src={asset(chosen.cover)}
             alt={title}
             fill
             sizes="(max-width: 1024px) 100vw, 960px"

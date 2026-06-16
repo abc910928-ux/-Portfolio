@@ -366,6 +366,13 @@ export const projects: Project[] = [
   },
 ];
 
+// 靜態匯出 + GitHub Pages 子路徑：next/image 在 unoptimized 模式不會自動補 basePath，
+// 圖片 src 需手動補上（本機 basePath 為空字串，等於原樣）。
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+export function asset(path: string): string {
+  return path.startsWith("/") ? `${BASE_PATH}${path}` : path;
+}
+
 export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
 }

@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 import Image from "next/image";
+import { asset } from "@/data/projects";
 
 type LightboxCtxValue = { open: (index: number) => void };
 const LightboxCtx = createContext<LightboxCtxValue | null>(null);
@@ -101,7 +102,7 @@ export function LightboxProvider({
             onClick={(e) => e.stopPropagation()}
           >
             <Image
-              src={images[index]}
+              src={asset(images[index])}
               alt={alt}
               fill
               sizes="90vw"
@@ -161,7 +162,7 @@ export function LightboxImage({
       aria-label="放大檢視圖片"
     >
       <Image
-        src={src}
+        src={asset(src)}
         alt={alt}
         fill
         sizes={sizes ?? "100vw"}

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Project, Group } from "@/data/projects";
-import { projectTopics, projectGroups, viewFor } from "@/data/projects";
+import { projectTopics, projectGroups, viewFor, asset } from "@/data/projects";
 
 export function ProjectCard({
   project,
@@ -26,7 +26,7 @@ export function ProjectCard({
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
-          src={cover}
+          src={asset(cover)}
           alt={project.title}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
