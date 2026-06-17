@@ -105,7 +105,7 @@ specs: [
 ],
 ```
 
-**示意圖**：`public/projects/` 內預設為自動產生的示意圖，請用實際作品（.jpg / .png / .webp）覆蓋，或改 `data/projects.ts` 內的路徑。重新產生示意圖可執行 `node scripts/gen-placeholders.mjs`。
+**照片最佳化**：建議把照片轉成 WebP 以加快載入。先 `npm install --no-save sharp`，再 `node scripts/to-webp.mjs`（會把 `public/projects/` 內的 JPEG 轉成 WebP 並刪除原檔）。
 
 **聯絡資訊**：請編輯 `components/site-footer.tsx`，把 email 與社群連結換成你的。
 
@@ -128,17 +128,17 @@ specs: [
 
 **模型太大怎麼辦（OBJ 數百 MB）**
 
-OBJ 動輒上百 MB，GitHub 單檔上限 100MB、瀏覽器也載不動。可用純 Node 工具壓成小體積的 Draco GLB（實測 188MB → 7MB）：
+OBJ 動輒上百 MB，GitHub 單檔上限 100MB、瀏覽器也載不動。用純 Node 工具轉成精簡的 GLB（實測 188MB → 4MB），再用 `model:` 引用：
 
 ```powershell
 # 在含 obj/mtl/貼圖 的資料夾執行
-npx obj2gltf -i 3Dmodel.obj -o model.glb
-npx gltf-pipeline -i model.glb -o model-draco.glb -d
+npx obj2gltf -i 3Dmodel.obj -o raw.glb
+# 簡化網格 + 量化 + WebP 貼圖 + 置中（不用 Draco，避免相容性問題）
+npx @gltf-transform/cli optimize raw.glb opt.glb --compress quantize --texture-compress webp --texture-size 1024 --simplify true --simplify-error 0.008
+npx @gltf-transform/cli center opt.glb model.glb --pivot center
 ```
 
-把產生的 `model-draco.glb` 放進 `public/models/` 並用 `model:` 引用即可（model-viewer 原生支援 Draco）。
-
-> 範例模型 `public/models/sample-building.glb` 可以直接刪除或替換。
+> 注意：避免使用 Draco 壓縮（`KHR_draco_mesh_compression`）—— 它需要瀏覽器另外從 CDN 下載解碼器，部分網路環境會載不到而導致 3D 顯示不出來。量化（quantize）與 WebP 都是瀏覽器原生支援、無外部依賴。
 
 ---
 

@@ -1,41 +1,41 @@
 @echo off
 chcp 65001 >nul
 cd /d "%~dp0"
-echo ========================================
-echo   更新作品集網站並上線
-echo ========================================
+echo ============================================
+echo  Update portfolio and deploy
+echo ============================================
 echo.
-echo 正在偵測變更...
+
 git add -A
 
 set "msg="
-set /p "msg=請輸入這次更新的說明（直接按 Enter 用預設）: "
-if "%msg%"=="" set "msg=更新作品集內容"
+set /p "msg=Commit message (Enter for default): "
+if "%msg%"=="" set "msg=Update portfolio"
 
 git commit -m "%msg%"
 if errorlevel 1 (
   echo.
-  echo 沒有偵測到變更，或提交失敗，未進行上傳。
+  echo No changes to commit, or commit failed. Nothing pushed.
   echo.
   pause
   exit /b
 )
 
 echo.
-echo 正在上傳到 GitHub...
+echo Pushing to GitHub...
 git push
 if errorlevel 1 (
   echo.
-  echo 上傳失敗，請檢查網路或 GitHub 登入狀態。
+  echo Push failed. Check network / GitHub login.
   echo.
   pause
   exit /b
 )
 
 echo.
-echo ----------------------------------------
-echo  完成！約 1 至 2 分鐘後網站會自動更新：
+echo --------------------------------------------
+echo  Done. Site updates in 1-2 min:
 echo  https://abc910928-ux.github.io/-Portfolio/
-echo ----------------------------------------
+echo --------------------------------------------
 echo.
 pause
