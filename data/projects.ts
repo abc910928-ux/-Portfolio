@@ -64,6 +64,29 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "fire-station-competition",
+    title: "消防局競圖模型",
+    subtitle: "消防廳舍・外觀競圖模型",
+    group: "模型",
+    topic: ["材質呈現", "外觀模型"],
+    role: "模型製作",
+    cover: "/projects/fire-1.webp",
+    gallery: [
+      "/projects/fire-2.webp",
+      "/projects/fire-3.webp",
+      "/projects/fire-4.webp",
+      "/projects/fire-5.webp",
+    ],
+    specs: [
+      { label: "模型用途", value: "競圖" },
+      { label: "模型比例", value: "1:30" },
+      { label: "模型材料", value: "牛奶板、噴漆" },
+      { label: "使用軟體", value: "Rhino" },
+    ],
+    sections: [],
+    featured: true,
+  },
+  {
     slug: "park-228-competition",
     title: "228公園競圖模型",
     subtitle: "下沉式圓形紀念廣場・競圖提案模型",
