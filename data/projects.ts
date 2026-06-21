@@ -20,7 +20,7 @@ export const groupOrder: Group[] = ["模型", "建模"];
 //   沒列在這裡的 group（例如「建模」），則依現有作品自動產生主題。
 export const topicOrder: Partial<Record<Group, string[]>> = {
   模型: ["素模", "材質呈現", "室內", "外觀模型", "含周遭環境", "環境模"],
-  建模: [], // 空清單＝建模先不做細分主題（選建模時不顯示第二層）
+  建模: ["grasshopper"], // 建模的細分主題
 };
 
 export type ProjectSection = {
@@ -63,6 +63,22 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    slug: "blue-ocean-dome",
+    title: "BLUE OCEAN DOME",
+    subtitle: "Grasshopper 參數化格柵穹頂",
+    group: "建模",
+    topic: "grasshopper",
+    role: "參數化建模",
+    cover: "/projects/bod-1.webp",
+    gallery: ["/projects/bod-2.webp", "/projects/bod-3.webp"],
+    specs: [
+      { label: "模型用途", value: "學生 case study" },
+      { label: "使用軟體", value: "Rhino、Grasshopper" },
+    ],
+    sections: [],
+    featured: true,
+  },
   {
     slug: "fire-station-competition",
     title: "消防局競圖模型",
