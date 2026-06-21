@@ -72,6 +72,7 @@ export const projects: Project[] = [
     role: "參數化建模",
     cover: "/projects/bod-1.webp",
     gallery: ["/projects/bod-2.webp", "/projects/bod-3.webp"],
+    model: "/models/blue-ocean-dome.glb",
     specs: [
       { label: "模型用途", value: "學生 case study" },
       { label: "使用軟體", value: "Rhino、Grasshopper" },
