@@ -64,6 +64,28 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "park-228-competition",
+    title: "228公園競圖模型",
+    subtitle: "下沉式圓形紀念廣場・競圖提案模型",
+    group: "模型",
+    topic: "材質呈現",
+    role: "模型製作",
+    cover: "/projects/park228-1.webp",
+    gallery: [
+      "/projects/park228-2.webp",
+      "/projects/park228-3.webp",
+      "/projects/park228-4.webp",
+      "/projects/park228-5.webp",
+    ],
+    specs: [
+      { label: "模型比例", value: "1:30" },
+      { label: "模型材料", value: "水泥砂、3D 列印" },
+      { label: "使用軟體", value: "Rhino" },
+    ],
+    sections: [],
+    featured: true,
+  },
+  {
     slug: "terrain-model",
     title: "地形模",
     subtitle: "等高線地形與配置量體模型",
