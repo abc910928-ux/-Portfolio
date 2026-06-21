@@ -19,7 +19,7 @@ export const groupOrder: Group[] = ["模型", "建模"];
 //   有列在這裡的 group，會固定顯示這些主題按鈕（即使某主題還沒有作品，方便日後分類）；
 //   沒列在這裡的 group（例如「建模」），則依現有作品自動產生主題。
 export const topicOrder: Partial<Record<Group, string[]>> = {
-  模型: ["素模", "材質呈現", "室內", "外觀模型", "含周遭環境"],
+  模型: ["素模", "材質呈現", "室內", "外觀模型", "含周遭環境", "環境模"],
   建模: [], // 空清單＝建模先不做細分主題（選建模時不顯示第二層）
 };
 
@@ -63,6 +63,30 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    slug: "terrain-model",
+    title: "地形模",
+    subtitle: "等高線地形與配置量體模型",
+    group: "模型",
+    topic: ["素模", "環境模"],
+    role: "模型製作",
+    cover: "/projects/terrain-1.webp",
+    gallery: [
+      "/projects/terrain-2.webp",
+      "/projects/terrain-3.webp",
+      "/projects/terrain-4.webp",
+      "/projects/terrain-5.webp",
+      "/projects/terrain-6.webp",
+    ],
+    specs: [
+      { label: "模型用途", value: "學生作業" },
+      { label: "模型比例", value: "1:300" },
+      { label: "模型材料", value: "密集板、珍珠板" },
+      { label: "使用軟體", value: "Rhino、Vcurve（CNC）" },
+    ],
+    sections: [],
+    featured: true,
+  },
   {
     slug: "grand-parc-renovation",
     title: "Cité du Grand Parc 單層剖面模型",
