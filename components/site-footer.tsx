@@ -37,14 +37,28 @@ export function SiteFooter() {
             </div>
             <div className="flex gap-3">
               <dt className="w-12 shrink-0 text-muted">LINE</dt>
-              <dd className="text-foreground">Joe910928</dd>
+              <dd>
+                <a
+                  href="https://line.me/ti/p/P2YiI6WBGh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground transition-colors hover:text-accent"
+                >
+                  Joe910928
+                </a>
+              </dd>
             </div>
           </dl>
         </div>
 
         <div className="flex flex-col items-start gap-2 sm:items-end">
-          <span className="text-sm text-muted">加 LINE 好友</span>
-          <div className="overflow-hidden rounded-lg border border-line bg-white p-2">
+          <span className="text-sm text-muted">加 LINE 好友（點擊或掃描）</span>
+          <a
+            href="https://line.me/ti/p/P2YiI6WBGh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block overflow-hidden rounded-lg border border-line bg-white p-2 transition-transform hover:-translate-y-0.5 hover:shadow-md"
+          >
             <Image
               src={asset("/line-qr.png")}
               alt="LINE 加好友 QR Code（ID：Joe910928）"
@@ -53,7 +67,7 @@ export function SiteFooter() {
               loading="eager"
               className="h-40 w-40"
             />
-          </div>
+          </a>
         </div>
       </div>
 
