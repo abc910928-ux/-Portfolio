@@ -11,11 +11,11 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-line bg-background/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link href="/" className="group flex flex-col leading-tight">
-          <span className="text-lg font-medium tracking-wide">
-            建築・3D 作品集
+          <span className="text-lg font-medium tracking-[0.15em]">
+            莊子洋
           </span>
-          <span className="text-xs text-muted">
-            Architecture ・ 3D Modeling ・ Rendering
+          <span className="text-xs tracking-[0.2em] text-muted">
+            TZU-YANG CHUANG
           </span>
         </Link>
         <nav className="flex items-center gap-6 text-sm">

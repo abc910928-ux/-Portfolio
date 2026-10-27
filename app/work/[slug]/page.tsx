@@ -27,7 +27,7 @@ export async function generateMetadata({
   const project = getProject(slug);
   if (!project) return { title: "找不到作品" };
   return {
-    title: `${project.title} ｜ 作品集`,
+    title: `${project.title} ｜ 莊子洋`,
     description: project.summary || project.subtitle,
   };
 }
@@ -79,7 +79,7 @@ export default async function WorkDetail({
                   {project.tools.map((t) => (
                     <span
                       key={t}
-                      className="rounded border border-line bg-card px-2 py-0.5"
+                      className="border border-line bg-card px-2 py-0.5"
                     >
                       {t}
                     </span>
@@ -132,7 +132,7 @@ export default async function WorkDetail({
             {projectGroups(project).map((g) => (
               <span
                 key={g}
-                className="rounded-full bg-foreground/85 px-2.5 py-1 text-background"
+                className="bg-foreground px-2.5 py-1 text-background"
               >
                 {g}
               </span>
@@ -140,7 +140,7 @@ export default async function WorkDetail({
             {projectTopics(project).map((t) => (
               <span
                 key={t}
-                className="rounded-full border border-line bg-card px-2.5 py-1"
+                className="border border-line bg-card px-2.5 py-1"
               >
                 {t}
               </span>
@@ -174,7 +174,7 @@ export default async function WorkDetail({
         <div className="mx-auto max-w-4xl px-6 py-10 text-center">
           <Link
             href="/"
-            className="inline-block rounded-full border border-foreground px-6 py-2.5 text-sm transition-colors hover:bg-foreground hover:text-background"
+            className="inline-block border border-foreground px-6 py-2.5 text-sm transition-colors hover:bg-foreground hover:text-background"
           >
             瀏覽其他作品
           </Link>

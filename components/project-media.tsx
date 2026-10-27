@@ -37,7 +37,7 @@ export function ProjectMedia({
     <>
       {/* 封面（依情境切換） */}
       <div className="mx-auto max-w-5xl px-6 pt-10">
-        <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-line">
+        <div className="relative aspect-[16/9] overflow-hidden border border-line">
           <Image
             src={asset(chosen.cover)}
             alt={title}
@@ -66,7 +66,7 @@ export function ProjectMedia({
                   <p className="mt-3 leading-relaxed text-muted">{sec.body}</p>
                 </div>
                 {chosen.gallery[i] && (
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-line">
+                  <div className="relative aspect-[16/10] overflow-hidden border border-line">
                     <LightboxImage
                       index={i}
                       src={chosen.gallery[i]}
@@ -86,7 +86,7 @@ export function ProjectMedia({
                   return (
                     <div
                       key={galleryIndex}
-                      className="relative aspect-[4/3] overflow-hidden rounded-lg border border-line"
+                      className="relative aspect-[4/3] overflow-hidden border border-line"
                     >
                       <LightboxImage
                         index={galleryIndex}

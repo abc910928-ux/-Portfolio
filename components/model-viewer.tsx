@@ -30,7 +30,7 @@ export function ModelViewer({ src, alt, height = 480 }: Props) {
 
   return (
     <div
-      className="relative overflow-hidden rounded-lg border border-line bg-card"
+      className="relative overflow-hidden border border-line bg-card"
       style={{ height }}
     >
       {!ready && (
@@ -54,7 +54,7 @@ export function ModelViewer({ src, alt, height = 480 }: Props) {
           style={{ width: "100%", height: "100%", backgroundColor: "transparent" }}
         />
       )}
-      <div className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-black/55 px-3 py-1 text-xs text-white">
+      <div className="pointer-events-none absolute bottom-3 left-3 bg-black/55 px-3 py-1 text-xs text-white">
         拖曳可旋轉・滾輪縮放
       </div>
     </div>

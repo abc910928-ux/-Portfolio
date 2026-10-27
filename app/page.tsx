@@ -8,17 +8,16 @@ export default function Home() {
       <section className="border-b border-line">
         <div className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
           <p className="text-sm uppercase tracking-[0.2em] text-accent">
-            Portfolio
+            Selected Works
           </p>
           <h1 className="mt-4 max-w-3xl text-4xl font-light leading-tight sm:text-5xl">
-            建築模型、3D 建模
+            <span className="font-medium">模型與建模</span>
             <br />
-            到動畫與渲染的
-            <span className="font-medium">空間敘事</span>
+            把空間想像做成拿得到手上的東西
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">
-            從實體模型到數位視覺，完整呈現每個專案的設計思考與製作過程。
-            以下為精選案例，歡迎進一步了解合作方式。
+            實體建築模型、參數化建模與 3D 展示。
+            從數位模型到實體成品，記錄每個專案的製作過程。
           </p>
         </div>
       </section>

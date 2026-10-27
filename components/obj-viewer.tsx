@@ -165,7 +165,7 @@ export function ObjViewer({ src, height = 480 }: Props) {
 
   return (
     <div
-      className="relative overflow-hidden rounded-lg border border-line bg-card"
+      className="relative overflow-hidden border border-line bg-card"
       style={{ height }}
     >
       <div ref={containerRef} className="h-full w-full" />
@@ -174,7 +174,7 @@ export function ObjViewer({ src, height = 480 }: Props) {
           {status === "error" ? "3D 模型載入失敗" : "3D 模型載入中…"}
         </div>
       )}
-      <div className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-black/55 px-3 py-1 text-xs text-white">
+      <div className="pointer-events-none absolute bottom-3 left-3 bg-black/55 px-3 py-1 text-xs text-white">
         拖曳旋轉・滾輪縮放・右鍵平移
       </div>
     </div>

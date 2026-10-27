@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "關於 ｜ 作品集",
+  title: "關於 ｜ 莊子洋",
   description: "建築模型、3D 建模、動畫與渲染工作者的簡介與專長。",
 };
 
@@ -43,7 +43,7 @@ export default function About() {
         ))}
       </div>
 
-      <div className="mt-14 rounded-lg border border-line bg-card p-6">
+      <div className="mt-14 border border-line bg-card p-6">
         <h2 className="text-lg font-medium">合作邀約</h2>
         <p className="mt-2 text-sm leading-relaxed text-muted">
           若有建築模型、3D 建模、動畫或渲染需求，歡迎透過頁尾的聯絡方式與我聯繫，

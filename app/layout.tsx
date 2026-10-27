@@ -17,9 +17,9 @@ const notoSansTC = Noto_Sans_TC({
 });
 
 export const metadata: Metadata = {
-  title: "作品集 ｜ 建築模型・3D 建模・渲染",
+  title: "莊子洋 ｜ 建築模型與 3D 建模作品集",
   description:
-    "建築模型、3D 建模、動畫與渲染作品集。提供業主與合作夥伴檢視專案案例。",
+    "莊子洋 Tzu-Yang Chuang 的建築模型與 3D 建模作品集：實體建築模型、參數化建模與 3D 展示。",
 };
 
 export default function RootLayout({

@@ -59,10 +59,10 @@ export function WorkGallery({ projects }: { projects: Project[] }) {
               key={g}
               onClick={() => selectGroup(g)}
               className={
-                "rounded-full px-5 py-2 text-sm transition-colors " +
+                "px-5 py-2 text-sm transition-colors " +
                 (active
-                  ? "bg-foreground text-background"
-                  : "border border-line bg-card text-muted hover:text-foreground")
+                  ? "border border-foreground bg-foreground text-background"
+                  : "border border-line text-muted hover:border-foreground hover:text-foreground")
               }
             >
               {g}
@@ -84,10 +84,10 @@ export function WorkGallery({ projects }: { projects: Project[] }) {
                 key={t}
                 onClick={() => toggleTopic(t)}
                 className={
-                  "rounded-full px-3.5 py-1.5 text-sm transition-colors " +
+                  "px-3.5 py-1.5 text-sm transition-colors " +
                   (active
-                    ? "bg-accent text-white"
-                    : "border border-line text-muted hover:text-foreground")
+                    ? "border border-foreground bg-foreground text-background"
+                    : "border border-line text-muted hover:border-foreground hover:text-foreground")
                 }
               >
                 {t}
@@ -100,7 +100,7 @@ export function WorkGallery({ projects }: { projects: Project[] }) {
             onClick={() => setSelectedTopics([])}
             disabled={selectedTopics.length === 0}
             className={
-              "ml-1 rounded-full px-3.5 py-1.5 text-sm transition-colors " +
+              "ml-1 px-3.5 py-1.5 text-sm transition-colors " +
               (selectedTopics.length === 0
                 ? "cursor-not-allowed text-muted/40"
                 : "text-muted underline-offset-2 hover:text-foreground hover:underline")

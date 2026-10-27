@@ -76,7 +76,7 @@ export function LightboxProvider({
             type="button"
             aria-label="關閉"
             onClick={close}
-            className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-2xl text-white transition-colors hover:bg-white/20"
+            className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center bg-white/10 text-2xl text-white transition-colors hover:bg-white/20"
           >
             ✕
           </button>
@@ -90,7 +90,7 @@ export function LightboxProvider({
                 e.stopPropagation();
                 prev();
               }}
-              className="absolute left-2 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-3xl text-white transition-colors hover:bg-white/20 sm:left-6"
+              className="absolute left-2 z-10 flex h-12 w-12 items-center justify-center bg-white/10 text-3xl text-white transition-colors hover:bg-white/20 sm:left-6"
             >
               ‹
             </button>
@@ -120,7 +120,7 @@ export function LightboxProvider({
                 e.stopPropagation();
                 next();
               }}
-              className="absolute right-2 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-3xl text-white transition-colors hover:bg-white/20 sm:right-6"
+              className="absolute right-2 z-10 flex h-12 w-12 items-center justify-center bg-white/10 text-3xl text-white transition-colors hover:bg-white/20 sm:right-6"
             >
               ›
             </button>
@@ -128,7 +128,7 @@ export function LightboxProvider({
 
           {/* 頁碼 */}
           {images.length > 1 && (
-            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-white/10 px-3 py-1 text-sm text-white">
+            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 bg-white/10 px-3 py-1 text-sm text-white">
               {index + 1} / {images.length}
             </div>
           )}
@@ -168,7 +168,7 @@ export function LightboxImage({
         sizes={sizes ?? "100vw"}
         className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
       />
-      <span className="pointer-events-none absolute right-2 top-2 rounded-full bg-black/55 px-2 py-1 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
+      <span className="pointer-events-none absolute right-2 top-2 bg-black/55 px-2 py-1 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
         點擊放大
       </span>
     </button>

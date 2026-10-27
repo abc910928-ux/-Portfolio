@@ -4,7 +4,7 @@ import { asset } from "@/data/projects";
 export function SiteFooter() {
   const year = "2026";
   return (
-    <footer id="contact" className="border-t border-line bg-card/40">
+    <footer id="contact" className="border-t border-line">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 sm:grid-cols-2">
         <div>
           <h2 className="text-xl font-medium">合作與聯絡</h2>
@@ -18,7 +18,7 @@ export function SiteFooter() {
               <dd>
                 <a
                   href="mailto:abc24679220@gmail.com"
-                  className="text-foreground transition-colors hover:text-accent"
+                  className="text-foreground underline-offset-4 hover:underline"
                 >
                   abc24679220@gmail.com
                 </a>
@@ -29,7 +29,7 @@ export function SiteFooter() {
               <dd>
                 <a
                   href="tel:0910109489"
-                  className="text-foreground transition-colors hover:text-accent"
+                  className="text-foreground underline-offset-4 hover:underline"
                 >
                   0910-109-489
                 </a>
@@ -42,7 +42,7 @@ export function SiteFooter() {
                   href="https://line.me/ti/p/P2YiI6WBGh"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-foreground transition-colors hover:text-accent"
+                  className="text-foreground underline-offset-4 hover:underline"
                 >
                   Joe910928
                 </a>
@@ -57,7 +57,7 @@ export function SiteFooter() {
             href="https://line.me/ti/p/P2YiI6WBGh"
             target="_blank"
             rel="noopener noreferrer"
-            className="block overflow-hidden rounded-lg border border-line bg-white p-2 transition-transform hover:-translate-y-0.5 hover:shadow-md"
+            className="block overflow-hidden border border-line bg-white p-2"
           >
             <Image
               src={asset("/line-qr.png")}
@@ -73,8 +73,8 @@ export function SiteFooter() {
 
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 text-xs text-muted">
-          <span>© {year} 個人作品集</span>
-          <span>以 Next.js 建置・部署於 GitHub Pages</span>
+          <span>© {year} 莊子洋 Tzu-Yang Chuang</span>
+          <span>Architectural Models ・ 3D Modeling</span>
         </div>
       </div>
     </footer>

@@ -22,7 +22,7 @@ export function ProjectCard({
   return (
     <Link
       href={href}
-      className="group block overflow-hidden rounded-lg border border-line bg-card transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-black/5"
+      className="group block"
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
@@ -33,17 +33,17 @@ export function ProjectCard({
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
         {(project.model || project.model3d) && (
-          <span className="absolute right-3 top-3 rounded-full bg-black/65 px-2.5 py-1 text-xs font-medium text-white">
+          <span className="absolute right-3 top-3 bg-black/65 px-2.5 py-1 text-xs font-medium text-white">
             可旋轉 3D
           </span>
         )}
       </div>
-      <div className="p-5">
+      <div className="pt-4">
         <div className="flex items-center gap-2 text-xs text-muted">
           {projectGroups(project).map((g) => (
             <span
               key={g}
-              className="rounded-full bg-foreground/85 px-2 py-0.5 text-background"
+              className="bg-foreground px-2 py-0.5 text-background"
             >
               {g}
             </span>
@@ -51,7 +51,7 @@ export function ProjectCard({
           {projectTopics(project).map((t) => (
             <span
               key={t}
-              className="rounded-full border border-line bg-background px-2 py-0.5"
+              className="border border-line bg-background px-2 py-0.5"
             >
               {t}
             </span>

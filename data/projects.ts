@@ -5,15 +5,15 @@
 // basePath 會由 next/image 自動處理，不用自己加 /-Portfolio。
 //
 // 篩選分兩層：
-//   第一層 group：「建模」（數位 3D）或「模型」（實體模型）
+//   第一層 group：「模型」（實體模型）、「建模」（數位 3D）或「數位製造」（1:1 裝置與構造實作）
 //   第二層 topic：細分主題（自由命名，例如「室內渲染」「建築模型」），
 //                 相同 topic 的作品會被歸在同一個篩選按鈕底下。
 // ─────────────────────────────────────────────────────────────
 
-export type Group = "模型" | "建模";
+export type Group = "模型" | "建模" | "數位製造";
 
 // 第一層分類的顯示順序
-export const groupOrder: Group[] = ["模型", "建模"];
+export const groupOrder: Group[] = ["模型", "建模", "數位製造"];
 
 // 第二層細分主題的「預先定義清單」：
 //   有列在這裡的 group，會固定顯示這些主題按鈕（即使某主題還沒有作品，方便日後分類）；
@@ -21,6 +21,7 @@ export const groupOrder: Group[] = ["模型", "建模"];
 export const topicOrder: Partial<Record<Group, string[]>> = {
   模型: ["素模", "材質呈現", "室內", "外觀模型", "含周遭環境", "環境模"],
   建模: ["grasshopper"], // 建模的細分主題
+  數位製造: [], // 目前不做細分主題
 };
 
 export type ProjectSection = {
@@ -63,6 +64,95 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    slug: "mist-light-yuejin",
+    title: "光電獸 #46 - 霧幻光景",
+    subtitle: "2026 月津港燈節・水面霧光裝置",
+    group: "數位製造",
+    topic: "裝置",
+    year: "2026",
+    role: "構造設計、施工圖繪製、1:1 打樣",
+    cover: "/projects/yj-1.webp",
+    gallery: [
+      "/projects/yj-2.webp", // 設計理念：空拍夜景
+      "/projects/yj-5.webp", // 參數化構造模型：爆炸圖
+      "/projects/yj-3.webp", // 1:1 打樣：工廠內的浮體單元
+      "/projects/yj-6.webp",
+    ],
+    specs: [
+      { label: "類型", value: "團隊作品｜實踐大學 VISION BASE" },
+      { label: "展期與地點", value: "2026/2/7–3/8，臺南鹽水月津港親水公園" },
+      { label: "尺寸", value: "200m × 200m × 16cm，共 32 組單元" },
+      { label: "材料", value: "木材、金屬、燈光、水霧、馬達、電子設備、喇叭" },
+      { label: "藝術家", value: "姚仲涵 + VISION BASE" },
+      { label: "數位設計與製造", value: "盧彥臣助理教授／實踐大學 VISION BASE" },
+      { label: "負責項目", value: "構造設計、施工圖繪製、1:1 打樣" },
+      { label: "使用軟體", value: "Rhino、Grasshopper" },
+    ],
+    sections: [
+      {
+        heading: "設計理念",
+        body: "作品以霧氣與光為核心語言，霧氣在水面上擴散，燈光穿透其中形成層層光域。聲音取樣自鹽水蜂炮，轉化為電聲節奏，沿著水岸行走於霧光之間，如同進入一個可呼吸的數據雲層。",
+      },
+      {
+        heading: "參數化構造模型",
+        body: "單元漂浮於水面，需承載燈具、霧氣設備與喇叭，浮體尺寸必須反覆調整。從一開始即以 Grasshopper 建立參數化模型，每次修改即可同步更新模型與圖面；施工圖與加工圖由同一模型產出，確保圖面與最終尺寸一致。",
+      },
+      {
+        heading: "1:1 打樣與施工圖",
+        body: "以 1:1 打樣驗證構件接合、設備安裝、浮力與實際光霧效果，將結果回饋修正圖面，最後繪製完整的施工與加工圖說，作為發包、製作與現場施工的依據。",
+      },
+    ],
+    featured: true,
+  },
+  {
+    slug: "wall-of-voices",
+    title: "Wall Of Voices 聲之牆",
+    subtitle: "遷徙博物館《聽夢》・廣慈社宅雙曲面聲學裝置",
+    group: "數位製造",
+    topic: "裝置",
+    year: "2024",
+    role: "施工可行性評估、拆件與施工圖、1:1 打樣、現場施工",
+    cover: "/projects/wov-1.webp",
+    gallery: [
+      "/projects/wov-2.webp", // 設計理念：外觀
+      "/projects/wov-7.webp", // 聲鏡平面：平面圖
+      "/projects/wov-8.webp", // 從曲面模型到施工：工廠預組
+      "/projects/wov-3.webp",
+      "/projects/wov-4.webp",
+      "/projects/wov-5.webp",
+      "/projects/wov-6.webp",
+      "/projects/wov-9.webp",
+      "/projects/wov-10.webp",
+      "/projects/wov-11.webp",
+      "/projects/wov-12.webp",
+    ],
+    specs: [
+      { label: "類型", value: "團隊作品｜實踐大學 VISION BASE" },
+      { label: "地點", value: "台北廣慈社宅" },
+      { label: "尺寸", value: "10m × 20m × 3.5m" },
+      { label: "材料", value: "木材（合板）、金屬、燈光、水霧、馬達、電子設備、喇叭" },
+      { label: "藝術家", value: "Florian Claar" },
+      { label: "計畫發起", value: "藝術方有限公司" },
+      { label: "數位設計與製造", value: "盧彥臣助理教授／實踐大學 VISION BASE" },
+      { label: "負責項目", value: "施工可行性評估、模型拆件與施工圖、工程分包對接、1:1 打樣、現場施工" },
+    ],
+    sections: [
+      {
+        heading: "設計理念",
+        body: "《聲之牆》以社區居民的遷徙經驗與夢想為主題，透過雙曲面的「聲學鏡」劇場，將收集而來的聲音放大、反射，形成屬於這個地方的聲景。作品同時是聲學裝置與表演空間，開幕演出由林強與台北室內合唱團，以居民談夢想的訪談錄音共同創作。",
+      },
+      {
+        heading: "聲鏡平面",
+        body: "平面由數段內凹弧牆圍合而成，每段弧牆都是一面「聲鏡」，將聲音反射並聚焦於聆聽者耳高。弧牆的半徑、高度、角度與間距皆依聲學模擬決定，而非造型偏好。",
+      },
+      {
+        heading: "從曲面模型到施工",
+        body: "在整體曲面模型完成後，由我接手推進到施工階段：評估組裝方式與施工順序，將構件拆解為可加工的零件並繪製施工與加工圖說，對接協力廠商。牆體以肋骨為骨架、平板木料沿肋骨彎折貼附，以 2D 板材加工取代耗料的 3D 銑削，構件依人力可搬運的尺寸拆分並預留公差，現場依編號放樣組裝。",
+      },
+    ],
+    featured: true,
+  },
   {
     slug: "blue-ocean-dome",
     title: "BLUE OCEAN DOME",
