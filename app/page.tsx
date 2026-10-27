@@ -11,13 +11,14 @@ export default function Home() {
             Selected Works
           </p>
           <h1 className="mt-4 max-w-3xl text-4xl font-light leading-tight sm:text-5xl">
-            <span className="font-medium">模型與建模</span>
+            <span className="font-medium">模型・建模・數位製造</span>
             <br />
-            把空間想像做成拿得到手上的東西
+            從 1:100 到 1:1
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">
-            實體建築模型、參數化建模與 3D 展示。
-            從數位模型到實體成品，記錄每個專案的製作過程。
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted">
+            以 Rhino 與 Grasshopper 建立參數化模型，製作展覽與競圖用的建築模型，
+            <br className="hidden sm:inline" />
+            並參與 1:1 裝置的構造設計、施工圖與現場施工。
           </p>
         </div>
       </section>
