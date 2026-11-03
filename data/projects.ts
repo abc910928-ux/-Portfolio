@@ -232,6 +232,32 @@ const allProjects: Project[] = [
     featured: true,
   },
   {
+    // 原始照片資料夾：接案/作品照/模型/26000
+    slug: "section-house-model",
+    title: "剖面住宅模型",
+    subtitle: "中庭住宅・剖面展示模型",
+    group: "模型",
+    topic: ["素模", "室內", "含周遭環境"],
+    role: "模型製作",
+    cover: "/projects/section-1.webp",
+    gallery: [
+      "/projects/section-2.webp",
+      "/projects/section-3.webp",
+      "/projects/section-4.webp",
+      "/projects/section-5.webp",
+      "/projects/section-6.webp",
+      "/projects/section-7.webp",
+      "/projects/section-8.webp",
+    ],
+    specs: [
+      { label: "模型用途", value: "畢業製作模型" },
+      { label: "模型比例", value: "1:50" },
+      { label: "模型材料", value: "3D 列印、牛奶板" },
+    ],
+    sections: [],
+    featured: true,
+  },
+  {
     slug: "fire-station-competition",
     title: "消防局競圖模型",
     subtitle: "消防廳舍・外觀競圖模型",
@@ -326,6 +352,39 @@ const allProjects: Project[] = [
       { label: "使用軟體", value: "Rhino、AutoCAD" },
     ],
     sections: [], // 不放圖文段落，照片以圖庫形式呈現
+    featured: true,
+  },
+  {
+    slug: "aoyama-apartment",
+    title: "青山公寓",
+    subtitle: "同潤會青山公寓・集合住宅展覽模型",
+    group: "模型",
+    topic: ["外觀模型", "含周遭環境"],
+    year: "2023",
+    role: "模型製作",
+    cover: "/projects/aoyama-1.webp",
+    gallery: [
+      "/projects/aoyama-2.webp",
+      "/projects/aoyama-3.webp",
+      "/projects/aoyama-4.webp",
+      "/projects/aoyama-5.webp",
+      "/projects/aoyama-6.webp",
+      "/projects/aoyama-7.webp",
+      "/projects/aoyama-8.webp",
+      "/projects/aoyama-9.webp",
+      "/projects/aoyama-10.webp",
+    ],
+    specs: [
+      {
+        label: "模型用途",
+        value:
+          "台灣博物館鐵道部特展「當我們同宅一起：公宅設計與理想現代生活」展覽模型",
+      },
+      { label: "模型比例", value: "1:50" },
+      { label: "模型材料", value: "紙板" },
+      { label: "使用軟體", value: "Rhino、AutoCAD" },
+    ],
+    sections: [],
     featured: true,
   },
   {
