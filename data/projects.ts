@@ -465,12 +465,12 @@ const allProjects: Project[] = [
   },
 ];
 
-// 作品牆最前面的置頂作品（依序：模型、建模、數位製造各一件），其餘照上面的順序排在後面。
+// 作品牆最前面的置頂作品（依序：模型、數位製造、建模各一件），其餘照上面的順序排在後面。
 // 想換置頂作品，改這裡的 slug 即可。
 const pinned = [
   "nerima-apartment",
+  "wall-of-voices",
   "blue-ocean-dome",
-  "petg-bending-active",
 ];
 
 export const projects: Project[] = [
