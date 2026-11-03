@@ -63,13 +63,13 @@ export type Project = {
   featured?: boolean; // 是否在首頁精選
 };
 
-export const projects: Project[] = [
+const allProjects: Project[] = [
   {
     slug: "petg-bending-active",
     title: "PETG 加法製造彈性變形彎曲主動結構",
-    subtitle: "畢業製作・機械手臂列印的彎曲主動結構",
+    subtitle: "機械手臂列印的彎曲主動結構",
     group: "數位製造",
-    topic: "畢業製作",
+    topic: "裝置藝術",
     year: "2025",
     role: "設計者（個人作品）",
     cover: "/projects/petg-1.webp",
@@ -90,7 +90,7 @@ export const projects: Project[] = [
       "/projects/petg-15.webp",
     ],
     specs: [
-      { label: "類型", value: "畢業製作｜個人作品｜實踐大學 VISION BASE" },
+      { label: "類型", value: "個人作品｜實踐大學 VISION BASE" },
       { label: "指導老師", value: "盧彥臣" },
       { label: "尺寸", value: "1.7m × 1.7m × 1.0m" },
       { label: "材料", value: "PETG、金屬" },
@@ -130,7 +130,7 @@ export const projects: Project[] = [
     title: "光電獸 #46 - 霧幻光景",
     subtitle: "2026 月津港燈節・水面霧光裝置",
     group: "數位製造",
-    topic: "裝置",
+    topic: "裝置藝術",
     year: "2026",
     role: "構造設計、施工圖繪製、1:1 打樣",
     cover: "/projects/yj-1.webp",
@@ -171,7 +171,7 @@ export const projects: Project[] = [
     title: "Wall Of Voices 聲之牆",
     subtitle: "遷徙博物館《聽夢》・廣慈社宅雙曲面聲學裝置",
     group: "數位製造",
-    topic: "裝置",
+    topic: "裝置藝術",
     year: "2024",
     role: "施工可行性評估、拆件與施工圖、1:1 打樣、現場施工",
     cover: "/projects/wov-1.webp",
@@ -463,6 +463,19 @@ export const projects: Project[] = [
     sections: [],
     featured: true,
   },
+];
+
+// 作品牆最前面的置頂作品（依序：模型、建模、數位製造各一件），其餘照上面的順序排在後面。
+// 想換置頂作品，改這裡的 slug 即可。
+const pinned = [
+  "nerima-apartment",
+  "blue-ocean-dome",
+  "petg-bending-active",
+];
+
+export const projects: Project[] = [
+  ...pinned.map((slug) => allProjects.find((p) => p.slug === slug)!),
+  ...allProjects.filter((p) => !pinned.includes(p.slug)),
 ];
 
 // 靜態匯出 + GitHub Pages 子路徑：next/image 在 unoptimized 模式不會自動補 basePath，
