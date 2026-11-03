@@ -65,6 +65,67 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "petg-bending-active",
+    title: "PETG 加法製造彈性變形彎曲主動結構",
+    subtitle: "畢業製作・機械手臂列印的彎曲主動結構",
+    group: "數位製造",
+    topic: "畢業製作",
+    year: "2025",
+    role: "設計者（個人作品）",
+    cover: "/projects/petg-1.webp",
+    gallery: [
+      "/projects/petg-2.webp", // 設計理念：原型全景
+      "/projects/petg-3.webp", // 木材彎曲實驗
+      "/projects/petg-4.webp", // 曲率優化：曲率分析圖
+      "/projects/petg-5.webp", // PETG 研究：列印路徑
+      "/projects/petg-6.webp", // 纏繞與互鎖：接合細部
+      "/projects/petg-7.webp", // 受控彎曲原型：正面
+      "/projects/petg-8.webp",
+      "/projects/petg-9.webp",
+      "/projects/petg-10.webp",
+      "/projects/petg-11.webp",
+      "/projects/petg-12.webp",
+      "/projects/petg-13.webp",
+      "/projects/petg-14.webp",
+      "/projects/petg-15.webp",
+    ],
+    specs: [
+      { label: "類型", value: "畢業製作｜個人作品｜實踐大學 VISION BASE" },
+      { label: "指導老師", value: "盧彥臣" },
+      { label: "尺寸", value: "1.7m × 1.7m × 1.0m" },
+      { label: "材料", value: "PETG、金屬" },
+      { label: "製造方式", value: "機械手臂 FDM 加法製造" },
+      { label: "使用軟體", value: "Rhino、Grasshopper、Kangaroo" },
+    ],
+    sections: [
+      {
+        heading: "設計理念",
+        body: "建築尺度的 3D 列印多仰賴剛性材料層層堆疊，構件往往需要加大斷面、懸挑處也得依賴外部支撐，使成果笨重且造型受限。本研究試圖翻轉這個邏輯：以 Bending-Active（彎曲主動）結構為基礎，利用材料本身的彈性變形與預應力，讓構件在彎曲後達成幾何與力學的平衡，形成輕量且穩定的自由曲面。",
+      },
+      {
+        heading: "木材彎曲實驗",
+        body: "研究以薄木條的彎曲實驗作為起點：先以 Kangaroo 進行 form-finding，將目標曲面分割為可由平板彎曲成形的條狀構件，再以 1:1 實體驗證彎曲後的幾何是否回到設計曲面。實驗發現天然木材的紋理、節點與含水率差異使回彈量難以精確預測，同一組參數在不同木條上會得到不同曲率——這成為研究轉向 PETG 的關鍵原因。",
+      },
+      {
+        heading: "曲率優化與製造流程",
+        body: "以視覺化的曲率分析找出可能的爆裂點並優化曲面；優化後的曲面直接生成主結構、分割為構件，再轉為可加工檔。幾何導入、曲率檢測、曲面分割到製造輸出，整合成一條可反覆修正的數位流程。",
+      },
+      {
+        heading: "PETG 研究：列印路徑即纖維",
+        body: "PETG 具有良好的韌性與回復性，以機械手臂列印時能精確控制每一層的路徑與斷面寬度。由於 FDM 製程具有各向異性，列印軌跡就如同人工纖維：平行受力方向時能提升連續性與韌性，垂直時則容易發生層間斷裂。研究藉此把「列印路徑」轉化為控制彎曲方向與曲率的設計參數。",
+      },
+      {
+        heading: "纏繞與互鎖",
+        body: "單元先以平面狀態列印，再於組裝時被彎曲、卡接到相鄰單元上，每個單元的回彈力在整體中互相抵銷，讓結構不需外部支撐即可平衡。研究比較兩種接合方式：纏繞（Twining）讓條帶上下交錯、以摩擦與張力相互約束；互鎖（Interlocking）以幾何卡接限制位移。兩者都不依賴額外接頭，而是讓彎曲後的內應力本身成為接合與穩定的來源。",
+      },
+      {
+        heading: "受控彎曲原型",
+        body: "最終原型尺寸為 1.7m × 1.7m × 1.0m，由 PETG 列印單元與金屬接件組構而成。原型驗證了研究的核心假設：構件不需加大斷面，也不需外部支撐，僅靠彎曲產生的預應力即可維持輕量且穩定的自由曲面，將形態生成、結構性能與製造過程整合為一體。",
+      },
+    ],
+    featured: true,
+  },
+  {
     slug: "mist-light-yuejin",
     title: "光電獸 #46 - 霧幻光景",
     subtitle: "2026 月津港燈節・水面霧光裝置",
